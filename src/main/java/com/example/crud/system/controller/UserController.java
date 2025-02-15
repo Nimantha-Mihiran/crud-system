@@ -1,9 +1,13 @@
 package com.example.crud.system.controller;
 
 import com.example.crud.system.dto.UserDTO;
+import com.example.crud.system.entity.User;
 import com.example.crud.system.service.UserService;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1/user")
@@ -13,9 +17,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/getUser")
-    public String getUser() {
-        return "Simple-Root";
+    @GetMapping("/getUsers")
+    public List<UserDTO> getUser() {
+        return userService.getAllUsers();
     }
 
     @PostMapping("/saveUser")
@@ -32,5 +36,7 @@ public class UserController {
     public String deleteUser() {
         return "User Deleted!";
     }
+
+
 
 }
